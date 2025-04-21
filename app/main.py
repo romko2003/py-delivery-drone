@@ -1,7 +1,7 @@
 from typing import List, Optional
 
 class BaseRobot:
-    def __init__(self, name: str, weight: float, coords: Optional[List[int]] = None):
+    def __init__(self, name: str, weight: float, coords: Optional[List[int]] = None) -> None:
         self.name: str = name
         self.weight: float = weight
         self.coords: List[int] = coords if coords is not None else [0, 0]
@@ -23,7 +23,7 @@ class BaseRobot:
 
 
 class FlyingRobot(BaseRobot):
-    def __init__(self, name: str, weight: float, coords: Optional[List[int]] = None):
+    def __init__(self, name: str, weight: float, coords: Optional[List[int]] = None) -> None:
         if coords is None:
             super().__init__(name, weight, [0, 0, 0])
         else:
@@ -38,7 +38,7 @@ class FlyingRobot(BaseRobot):
 
 
 class Cargo:
-    def __init__(self, weight: float):
+    def __init__(self, weight: float) -> None:
         self.weight: float = weight
 
 
@@ -50,7 +50,7 @@ class DeliveryDrone(FlyingRobot):
         coords: Optional[List[int]] = None,
         max_load_weight: Optional[float] = None,
         current_load: Optional[Cargo] = None,
-    ):
+    ) -> None:
         super().__init__(name, weight, coords)
         self.max_load_weight: Optional[float] = max_load_weight
         self.current_load: Optional[Cargo] = current_load
@@ -97,3 +97,4 @@ if __name__ == "__main__":
     )
     drone.unhook_load()
     assert drone.current_load is None
+    print("End of script") # Added a newline at the end
