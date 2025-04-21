@@ -1,5 +1,6 @@
 from typing import List, Optional
 
+
 class BaseRobot:
     def __init__(self, name: str, weight: float, coords: Optional[List[int]] = None) -> None:
         self.name: str = name
@@ -56,7 +57,8 @@ class DeliveryDrone(FlyingRobot):
         self.current_load: Optional[Cargo] = current_load
 
     def hook_load(self, cargo: Cargo) -> None:
-        if self.current_load is None and self.max_load_weight is not None and cargo.weight <= self.max_load_weight:
+        if (self.current_load is None and self.max_load_weight is not None and
+                cargo.weight <= self.max_load_weight):
             self.current_load = cargo
 
     def unhook_load(self) -> None:
@@ -97,4 +99,4 @@ if __name__ == "__main__":
     )
     drone.unhook_load()
     assert drone.current_load is None
-    print("End of script") # Added a newline at the end
+    print("End of script")
